@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,11 +10,12 @@ namespace Conditionals_HUDv1._2_Nick
     internal class Program
     {
         static int health = 100;
+        static Weapon weapon = Weapon.Pistol;
 
         enum Weapon
         {
-            pistol = 0,
-            shotGun = 1,
+            Pistol = 0,
+            Shotgun = 1,
             Spreader = 2,
             Laser = 3,
             Sniper = 4,
@@ -22,14 +24,37 @@ namespace Conditionals_HUDv1._2_Nick
 
         static void Main(string[] args)
         {
-            if (Weapon == 1)
-            {
+            ChangeWeapon(Weapon.Spreader);
+            Console.WriteLine("Hell Yeah");
+            ShowHUD();
+            Console.ReadKey();
+            Console.Clear();
 
-            }
+            ChangeWeapon(Weapon.Sniper);
+            Console.WriteLine("Hell Yeah");
+            ShowHUD();
+            Console.ReadKey();
+            Console.Clear();
+
+            Console.WriteLine("You were shot in the leg, yeowch!");
+            TakeDamage(75);
+            ShowHUD();
+            Console.ReadKey();
+            Console.Clear();
+
+            Console.WriteLine("Mom kissed your boo boos, thank you mom.");
+            Heal(50);
+            ShowHUD();
+            Console.ReadKey();
+            Console.Clear();
+
+
+
         }
-        static void ChangeWeapon(int weaponPickedUp)
+        static void ChangeWeapon(Weapon weaponPickedUp)
         {
             Console.WriteLine($"Player picked up a {weaponPickedUp}");
+            weapon = weaponPickedUp;
         }
 
         static void TakeDamage(int damage)
@@ -44,34 +69,27 @@ namespace Conditionals_HUDv1._2_Nick
 
         static void ShowHUD()
         {
-            Console.WriteLine("{0,0}{1,15}{2,15}", $"Health: {health}, Weapon: {Weapon}, Health Status: ");
-            if(int health);
+            Console.Write("{0,0}{1,30}{2,30}", "Health:" + health, "Weapon:" + weapon, "Health Status: ");
+            if (health == 100)
             {
-                health = 100;
                 Console.Write("Perfect Health");
             }
-            if else
+            else if (health > 75)
             {
-                health > 75;
                 Console.Write("Healthy");
             }
-            if else
+            else if (health > 50)
             {
-                health > 50;
                 Console.Write("Hurt");
             }
-            if else
+            else if (health > 10)
             {
-                health > 10;
                 Console.Write("Badly Hurt");
             }
             else
             {
-                health > 1;
                 Console.Write("Imminent Danger");
             }
         }
-
-        // test
     }
 }
