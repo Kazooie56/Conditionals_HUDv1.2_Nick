@@ -71,7 +71,5 @@ namespace Conditionals_HUDv1._2_Nick
                 Console.Write("Imminent Danger");
             }
         }
-
-        // test
     }
 }
